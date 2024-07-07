@@ -64,7 +64,7 @@ const Dot: FC<DotType> = ({element, id, index, onChange, setIsPressed, isPressed
 const InputBlock = () => {
 
     const dispatch = useAppDispatch();
-    const {level} = useAppSelector(state => state)
+    const level = useAppSelector(state => state.level)
     const [letters, setLetters] = useState<string[]>([])
     const [isPressed, setIsPressed] = useState(false)
     const [inputWord, setInputWord] = useState('')

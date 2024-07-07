@@ -6,7 +6,7 @@ import { useNavigate} from "react-router-dom";
 
 const Grid = () => {
 
-    const { gameProcess} = useAppSelector(state => state)
+    const gameProcess = useAppSelector(state => state.gameProcess)
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -17,7 +17,7 @@ const Grid = () => {
 
     return <>
         {
-            gameProcess.map(row => <Row row={row}/>)
+            gameProcess.map((row, i)=> <Row key={row.word + i.toString()} row={row}/>)
         }
     </>
 }

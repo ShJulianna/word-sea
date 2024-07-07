@@ -1,7 +1,7 @@
 import Header from "../../components/header/Header";
 import Grid from "../../components/grid/Grid";
 import InputBlock from "../../components/Input-block/Input-block";
-import React, {FC, useEffect, useState} from "react";
+import {FC, useEffect, useState} from "react";
 import Modal from "../../components/modals/Popup";
 
 const MainPage: FC = () => {

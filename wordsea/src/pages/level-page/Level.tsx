@@ -1,5 +1,5 @@
 import Header from "../../components/header/Header";
-import React, {FC} from "react";
+import {FC} from "react";
 import {useAppDispatch, useAppSelector} from "../../store/store-hooks";
 import Button from "../../components/buttons/Button";
 import {useNavigate} from "react-router-dom";
@@ -16,7 +16,7 @@ const Level: FC =() => {
         dispatch(setLevel())
         navigate("/")
     }
-    const {gameLevel} = useAppSelector(state => state)
+    const gameLevel = useAppSelector(state => state.gameLevel)
 
     return (
         <main className="App">

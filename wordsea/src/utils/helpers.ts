@@ -1,11 +1,3 @@
-import {v4 as uid} from "uuid";
-
-const duplicates = (values: string[]) => {
-    values.filter((element, index, array) => {
-        return array.indexOf(element) !== index;
-    });
-}
-
 export const checkNumberOfLettersInWord = (str: string) => {
     const arrayFromString = str.split('')
     return arrayFromString.reduce((acc:  Record<string, number>, i) => {
@@ -33,17 +25,16 @@ export const addLetters = (generalCount: Record<string, number>, additionalCount
 
 export const  numberOfLetters = (array: string[])=> {
     let numberOfLetters: Record<string, number> = {};
-    array.map(word => {
+    array.forEach(word => {
         const checkedNumberOfLetters = checkNumberOfLettersInWord(word);
         numberOfLetters = addLetters( numberOfLetters, checkedNumberOfLetters)
-        console.log(numberOfLetters)
     })
     return numberOfLetters
 }
 
 export const gainLetters = (numberOfLetters: Record<string, number>) => {
     let allLetters: string[] = []
-    Object.keys(numberOfLetters).map(el => {
+    Object.keys(numberOfLetters).forEach(el => {
         for (let i= 0; i < numberOfLetters[el]; i++){
             allLetters.push(el)
         }

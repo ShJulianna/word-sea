@@ -10,8 +10,8 @@ interface RowInterface {
 const Row: FC<RowInterface> = ({row, preLetter}) => {
     return <div className={"row-section"}>
         {
-            row.word?.toUpperCase().split("").map(letter =>
-            <Block letter={letter} isGuessed={row.isGuessed} preLetter={preLetter}/>
+            row.word?.toUpperCase().split("").map((letter, i) =>
+            <Block key={letter + i.toString()} letter={letter} isGuessed={row.isGuessed} preLetter={preLetter}/>
             )
         }
     </div>

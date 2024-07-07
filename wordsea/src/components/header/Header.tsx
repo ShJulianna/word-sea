@@ -9,7 +9,7 @@ interface HeaderType {
 
 const Header: FC<HeaderType> = ({title, subTitle}) => {
 
-    const {gameLevel} = useAppSelector(state => state)
+    const gameLevel = useAppSelector(state => state.gameLevel)
     return <header className="header">
         Уровень {gameLevel} {title}
         {subTitle && <p className={"subtitle"}>{subTitle}</p>}
