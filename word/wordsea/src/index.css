@@ -1,0 +1,9 @@
+@font-face {
+  font-family: 'CustomFont';
+  src:   url('./fonts/fonts.ttf') format('truetype');
+}
+
+body {
+  margin: 0;
+  font-family: 'CustomFont', sans-serif;
+}
