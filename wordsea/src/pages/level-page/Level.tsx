@@ -1,9 +1,11 @@
 import Header from "../../components/header/Header";
 import {FC} from "react";
 import {useAppDispatch, useAppSelector} from "../../store/store-hooks";
-import Button from "../../components/buttons/Button";
 import {useNavigate} from "react-router-dom";
 import {setGameLevel, setLevel} from "../../store/slices/gameStateSlice";
+import {LevelStyled} from "./level-styles";
+import {Button} from "../../components/buttons/Button";
+
 
 
 const Level: FC =() => {
@@ -19,10 +21,10 @@ const Level: FC =() => {
     const gameLevel = useAppSelector(state => state.gameLevel)
 
     return (
-        <main className="App">
+        <LevelStyled>
             <Header title={'пройден'} subTitle={"Изумительно!"}/>
-            <Button text={`Уровень ${gameLevel + 1}`} onClick={onClick}/>
-        </main>
+            <Button text={`Уровень ${gameLevel + 1}`} onClick={onClick} withMargin={true}/>
+        </LevelStyled>
     )
 }
 

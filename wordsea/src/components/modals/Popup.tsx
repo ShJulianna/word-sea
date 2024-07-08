@@ -1,29 +1,28 @@
 import {FC} from "react";
-import Button from "../buttons/Button";
+import {Button} from "../buttons/Button";
 import {ReactComponent as Popup} from "../../images/popup.svg";
-import "./Popup.css"
+import {ModalBox, ModalContainer, ModalHeader, ModalText, ModalTitle} from "./popup-styles";
 
 interface ModalType {
     title?: string
     text: string
     buttonText: string
-    to: string
 }
 
-const Modal: FC<ModalType> = ({title, text, buttonText, to}) => {
+const Modal: FC<ModalType> = ({title, text, buttonText}) => {
 
     const onclick = () => window.location.reload()
 
-    return <div className={'modal-container'}>
-        <div className={'modal'}>
-            <div className={"modal-header"}>
+    return <ModalContainer>
+        <ModalBox>
+            <ModalHeader>
                 <Popup />
-                <p className={"modal-title"}>{title}</p>
-            </div>
-            <div className={"modal-text"}>{text}</div>
+                <ModalTitle>{title}</ModalTitle>
+            </ModalHeader>
+            <ModalText className={"modal-text"}>{text}</ModalText>
             <Button text={buttonText} onClick={onclick}/>
-        </div>
-    </div>
+        </ModalBox>
+    </ModalContainer>
 }
 
 export  default Modal

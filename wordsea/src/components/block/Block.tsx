@@ -1,5 +1,5 @@
-import "./Block.css"
 import {FC} from "react";
+import {BlockBox, PreLetter} from "./block-styles";
 
 interface BlockType {
     preLetter?: boolean
@@ -9,9 +9,9 @@ interface BlockType {
 
 const Block: FC<BlockType> = ({letter, isGuessed, preLetter = false}) => {
 
-    return <div className={`block ${preLetter? "pre-letter" : isGuessed ? "guessed": "not-guessed"}`}>
-        {isGuessed ?  letter : ""}
-    </div>
+    return preLetter ?
+        <PreLetter>{letter}</PreLetter>
+        : <BlockBox $isGuessed={isGuessed}>{letter}</BlockBox>
 }
 
 export default Block

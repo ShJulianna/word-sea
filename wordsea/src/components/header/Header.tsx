@@ -1,6 +1,6 @@
 import {FC} from "react";
 import {useAppSelector} from "../../store/store-hooks";
-import "./Header.css"
+import {HeaderStyled, Subtitle} from "./header-styles";
 
 interface HeaderType {
     title?: string
@@ -10,10 +10,10 @@ interface HeaderType {
 const Header: FC<HeaderType> = ({title, subTitle}) => {
 
     const gameLevel = useAppSelector(state => state.gameLevel)
-    return <header className="header">
+    return <HeaderStyled>
         Уровень {gameLevel} {title}
-        {subTitle && <p className={"subtitle"}>{subTitle}</p>}
-    </header>
+        {subTitle && <Subtitle>{subTitle}</Subtitle>}
+    </HeaderStyled>
 }
 
 export default Header

@@ -1,17 +1,16 @@
 import {FC} from "react";
-import './Button.css';
+import {MainButton} from "./button-styles";
 
 interface ButtonType {
     text: string
     onClick: () => void
+    withMargin?: boolean
 }
 
-const Button: FC<ButtonType> = ({onClick, text}) => {
+export const Button: FC<ButtonType> = ({onClick, text, withMargin}) => {
 
-    return <button className={"button"} onClick={onClick}>
+    return <MainButton onClick={onClick} $withMargin={withMargin}>
         {text}
-    </button>
+    </MainButton>
 
 }
-
-export default Button

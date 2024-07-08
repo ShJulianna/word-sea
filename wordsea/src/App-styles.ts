@@ -1,4 +1,6 @@
-.App {
+import styled from "styled-components";
+
+export const Main = styled.main`
   text-align: center;
   background-color: #2B344B;
   min-height: 100vh;
@@ -6,8 +8,4 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-}
-
-
-
-
+`

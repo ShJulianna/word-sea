@@ -1,6 +1,6 @@
+import styled from "styled-components";
 
-
-.button {
+export const MainButton = styled.button<{$withMargin?: boolean}>`
     font-family: inherit;
     min-width: 330px;
     height: 94px;
@@ -11,4 +11,6 @@
     border-radius: 3rem;
     border: none;
     box-shadow: 0 2px 0 2px #426850;
-}
+    margin-top: ${props => props.$withMargin && "30vh" };  
+`
+

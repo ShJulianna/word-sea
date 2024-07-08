@@ -1,4 +1,6 @@
-.modal-container {
+import styled from "styled-components";
+
+export  const ModalContainer = styled.section`
     position: fixed;
     top: 0;
     bottom: 0;
@@ -14,9 +16,9 @@
     z-index: 99;
     padding:30px 0;
     background: rgb(0,0,0, 0.3);
-}
+`
 
-.modal {
+export  const ModalBox = styled.section`
     width: 80%;
     max-width: 530px;
     min-height: 428px;
@@ -27,19 +29,20 @@
     align-items: center;
     background-color: #ffffff;
     border-radius: 10%;
-}
+`
 
-.modal-header {
+export  const ModalHeader = styled.section`
     position: absolute;
     display: flex;
     flex-direction: column;
     justify-content: center;
     top: -19px;
     color: #ffffff;
-}
-.modal-title {
+`
+
+export  const ModalTitle = styled.section`    
     position: absolute;
-    top: 15%;
+    top: 45%;
     left: 50%;
     transform: translate(-50%, -50%);
     color: #ffffff;
@@ -47,8 +50,9 @@
     width: 80%;
     line-height: 36px;
     text-align: center;
-}
-.modal-text {
+`
+
+export  const ModalText = styled.section`
     font-family: inherit;
     font-size: 32px;
     font-weight: 700;
@@ -56,4 +60,4 @@
     text-align: center;
     color: #4D4D4D;
     margin: 64px 20px 16px;
-}
+`

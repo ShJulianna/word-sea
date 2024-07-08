@@ -1,10 +1,11 @@
-import "./Input-block.css"
-import {FC, useEffect, useState} from "react";
+import "./input-block-styles"
+import React, {FC, useEffect, useRef, useState} from "react";
 import Row from "../row/Row";
 import {useAppDispatch, useAppSelector} from "../../store/store-hooks";
 import {SORTED_LEVELS} from "../../data/constants";
 import {setProcess} from "../../store/slices/gameStateSlice";
 import {gainLetters, numberOfLetters} from "../../utils/helpers";
+import {InputContainer, Letter, MainCircle} from "./input-block-styles";
 
 
 interface DotType {
@@ -29,10 +30,7 @@ const Dot: FC<DotType> = ({element, id, index, onChange, setIsPressed, isPressed
         }
     }, [targets, id]);
 
-    return <div className={`letter ${isActive ? "active" : "not-active"}`}
-                  style={{
-                      transform: `rotate(${(index + 1) * (360 / numberOfLetters)-15}deg) translate(140%) rotate(-${(index + 1) * (360 / numberOfLetters)-15}deg)`
-                  }}
+    return <Letter $isActive={isActive} $index={index} $numberOfLetters={numberOfLetters}
                   onMouseEnter={() => {
                       if(isPressed){
                           if (Object.keys(targets)[Object.keys(targets).length -2] === id) {
@@ -58,8 +56,9 @@ const Dot: FC<DotType> = ({element, id, index, onChange, setIsPressed, isPressed
                   }}
 
     >{element}
-    </div>
+    </Letter>
 }
+
 
 const InputBlock = () => {
 
@@ -70,17 +69,24 @@ const InputBlock = () => {
     const [inputWord, setInputWord] = useState('')
     const [targets, setTargets] = useState<Record<string, string>>({})
 
+    const wrapRef = useRef(null)
+
     useEffect(() => {
         const numbers = numberOfLetters(SORTED_LEVELS[`SORTED_LEVEL_${level}`])
         setLetters(gainLetters(numbers))
     }, [level])
 
     useEffect(() => {
-        // if (targets)
         setInputWord(Object.values(targets).join(''))
     }, [targets]);
 
-    const clearInput = () => {
+    useEffect(() => {
+        document.addEventListener('mouseup', clearInput)
+        return () => document.addEventListener('mouseup', clearInput)
+    }, []);
+
+
+    const clearInput = (ev: any) => {
         if (SORTED_LEVELS[`SORTED_LEVEL_${level}`].includes(inputWord)){
             dispatch(setProcess(inputWord))
         }
@@ -89,9 +95,9 @@ const InputBlock = () => {
         setTargets({})
     }
 
-    return <div className="container" onMouseUp={clearInput}>
+    return <InputContainer onMouseUp={(e) => clearInput(e)} ref={wrapRef}>
         <Row row={{word: inputWord, isGuessed: true}} preLetter={true}/>
-        <div className={"main-circle"} >
+        <MainCircle>
             {letters.map((element,index) =>
                 <Dot
                     key={element+index.toString()}
@@ -105,9 +111,8 @@ const InputBlock = () => {
                     targets={targets}
                 ></Dot>
             )}
-        </div>
-
-    </div>
+        </MainCircle>
+    </InputContainer>
 }
 
 export default InputBlock
